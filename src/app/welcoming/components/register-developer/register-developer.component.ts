@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
@@ -13,13 +13,15 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 export class RegisterDeveloperComponent {
 
   developerForm = new FormGroup({
-    firsName: new FormControl(''),
-    lastName: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl('')
   });
 
+  @Output()
   developerRegistered = new EventEmitter<{firstName: string, lastName: string}>();
-  myOnSubmit(){
-    let firstName = this.developerForm.value.firsName?.toString() ?? '';
+
+  myOnSubmit() {
+    let firstName = this.developerForm.value.firstName?.toString() ?? '';
     let lastName = this.developerForm.value.lastName?.toString() ?? '';
 
     this.onDeveloperRegistered(firstName, lastName);
